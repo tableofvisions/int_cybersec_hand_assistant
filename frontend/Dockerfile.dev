@@ -1,0 +1,14 @@
+FROM node:23-alpine
+
+RUN apk add --no-cache libc6-compat
+RUN npm i npm@latest -g
+
+WORKDIR /app
+
+COPY src/package.json src/package-lock.json ./
+RUN npm ci
+
+COPY src/ .
+
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

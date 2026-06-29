@@ -1,0 +1,14 @@
+services:
+  frontend_v2:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: csagent_v2
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app
+      - /app/node_modules
+      - /app/.next

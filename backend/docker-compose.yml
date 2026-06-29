@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: csa
+      POSTGRES_PASSWORD: csa
+      POSTGRES_DB: csa_demo
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://csa:csa@db:5432/csa_demo
+      SECRET_KEY: devsecret
+      DEV_AUTO_VERIFY: "true"
+      CORS_ORIGINS: "http://localhost:3000,http://localhost:3001"
+      FRONTEND_URL: "http://localhost:3001"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

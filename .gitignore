@@ -1,0 +1,18 @@
+# Backend
+backend/.env
+backend/data/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+
+# Frontend
+frontend/.env.local
+frontend/.env.production
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# OS
+.DS_Store
+.vercel
+.env*
